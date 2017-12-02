@@ -5,7 +5,7 @@ const Nav = props => {
     <nav>
       <ul className='categories'>
         {props.categories.map(cat => (
-          <li className='category' key={cat}>{cat}</li>
+          <li className='category' key={cat.name}>{cat.name}</li>
         ))}
       </ul>
     </nav>
