@@ -1,20 +1,40 @@
 import React from 'react'
 import { Component } from 'react'
+import { connect } from 'react-redux'
+import { getPosts } from '../actions/postsAction'
+import Post from './Post'
 
 class Posts extends Component {
 
-  constructor(props) {
-    super(props)
-    this.state.filter = props.match.params.category
+  componentDidMount() {
+    this.props.getPosts(this.props.category)
   }
 
-  state = {}
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.category !== this.props.category) {
+      this.props.getPosts(nextProps.category)
+    }
+  }
 
   render() {
+    const { posts } = this.props
     return (
-      <div>{this.state.filter}</div>
+      <ul>
+        {posts.map(post => (
+          <li key={post.id}><Post post={post}/></li>
+        ))}
+      </ul>
     )
   }
 }
 
-export default Posts
+const mapDispatchToProps = dispatch => ({
+  getPosts: category => dispatch(getPosts(category))
+})
+
+const mapStateToProps = ({ posts }, props) => ({
+  posts,
+  category: props.match.params.category
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Posts)
