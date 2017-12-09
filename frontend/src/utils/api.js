@@ -6,7 +6,8 @@ if (!token)
 
 const headers = {
   'Accept': 'application/json',
-  'Authorization': token
+  'Authorization': token,
+  'Content-Type': 'application/json'
 }
 
 export const fetchCategories = () =>
@@ -14,9 +15,19 @@ export const fetchCategories = () =>
     .then(res => res.json())
     .then(data => data.categories)
 
-export const fetchPosts = category => {
+export const getPosts = category => {
   const cat = category ? `/${category}` : ''
   return fetch(`${api}${cat}/posts`, { headers })
     .then(res => res.json())
     .then(posts => posts)
 }
+
+export const createPost = post =>
+  fetch(`${api}/posts`, {
+    headers,
+    method: 'POST' ,
+    body: JSON.stringify(post)
+  })
+  .then(data => data.json())
+
+export const apiPosts = { getPosts, createPost }

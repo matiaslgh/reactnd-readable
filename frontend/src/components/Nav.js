@@ -3,8 +3,13 @@ import { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getCategories } from '../actions/categoriesAction'
+import CreatePost from './CreatePost'
 
 class Nav extends Component {
+
+  state = {
+    createPostModalIsOpen: false
+  }
 
   componentDidMount() {
     this.props.getCategories()
@@ -24,6 +29,14 @@ class Nav extends Component {
             </li>
           ))}
         </ul>
+        <button onClick={() => this.setState({createPostModalIsOpen: true})}>
+            Create Post
+        </button>
+        <CreatePost
+          isOpen={this.state.createPostModalIsOpen}
+          onRequestClose={() => this.setState({createPostModalIsOpen: false})}
+          categories={categories.map(c => ({ label:c.name, value:c.name }))}
+        />
       </nav>
     )
   }
