@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux'
-import { categories } from './categoriesReducer'
+import { category } from './categoryReducer'
 import { posts } from './postsReducer'
+import { ui } from './uiReducer'
 
 export default combineReducers({
-  categories,
-  posts
+  category,
+  posts,
+  ui
 })
