@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Route, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { updateCategory } from '../actions/categoryAction'
+import { changeCategory } from '../actions/categoriesAction'
 import Header from './Header'
 import CategoriesDrawer from './CategoriesDrawer'
 import Posts from './Posts'
@@ -9,18 +9,18 @@ import '../styles/App.css'
 
 class App extends Component {
   render() {
-    const { updateCategory } = this.props
+    const { changeCategory } = this.props
     return (
       <div className="root">
         <div className="appFrame">
           <Header />
           <CategoriesDrawer />
           <Route exact path="/" render={ ({ match }) => {
-            updateCategory('All')
+            changeCategory('All')
             return (<Posts />)
           }} />
           <Route exact path="/:category" render={ ({ match }) => {
-            updateCategory(match.params.category)
+            changeCategory(match.params.category)
             return (<Posts />)
           }} />
         </div>
@@ -30,7 +30,7 @@ class App extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  updateCategory: category => dispatch(updateCategory(category))
+  changeCategory: category => dispatch(changeCategory(category))
 })
 
 export default withRouter(connect(()=>({}), mapDispatchToProps)(App))

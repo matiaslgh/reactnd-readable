@@ -55,3 +55,17 @@
   bottom: 32px;
   right: 32px;
 }
+
+.formContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.textField {
+  margin: 8px!important;
+  width: 600px;
+}
+
+.formButton {
+  margin: 20px auto 0 auto;
+}

@@ -30,9 +30,9 @@ class Header extends Component {
   }
 }
 
-const mapStateToProps = ({ui, category}) => ({
+const mapStateToProps = ({ui, categories}) => ({
   open: ui.isDrawerOpen,
-  category
+  category: categories.currentCategory
 })
 
 const mapDispatchToProps = dispatch => ({

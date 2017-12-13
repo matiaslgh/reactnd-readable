@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import capitalize from 'lodash.capitalize'
 import { fetchCategories } from '../utils/api'
 import { closeDrawer } from '../actions/uiAction'
+import { setCategories } from '../actions/categoriesAction'
 import { Link } from 'react-router-dom'
 import { Drawer, IconButton, List, ListItem, ListItemText } from 'material-ui'
 import { ChevronLeft as ChevronLeftIcon } from 'material-ui-icons'
@@ -24,14 +25,15 @@ class CategoriesDrawer extends Component {
   }
 
   componentDidMount() {
-    fetchCategories().then(newCategories => {
-      newCategories = newCategories.map( ({ name, path }) => ({
+    fetchCategories().then(categories => {
+      categories = categories.map( ({ name, path }) => ({
         name: capitalize(name),
         path
       }))
-      this.setState( ({ categories }) => ({
-        categories: [...categories, ...newCategories]
-      }))
+      this.props.setCategories(categories)
+      this.setState({
+        categories: [...this.state.categories, ...categories]
+      })
     })
   }
 
@@ -73,12 +75,14 @@ const styles = theme => ({
     width: 240
 }})
 
-const mapStateToProps = ({ ui }) => ({
-  open: ui.isDrawerOpen
+const mapStateToProps = ({ ui, categories }) => ({
+  open: ui.isDrawerOpen,
+  categories: categories.allCategories
 })
 
 const mapDispatchToProps = dispatch => ({
-  closeDrawer: () => dispatch(closeDrawer())
+  closeDrawer: () => dispatch(closeDrawer()),
+  setCategories: categories => dispatch(setCategories(categories))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(CategoriesDrawer))
