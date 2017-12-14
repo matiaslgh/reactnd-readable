@@ -1,3 +1,11 @@
+ul {
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
 .root {
   width: 100%;
   height: 100vh;
@@ -68,4 +76,8 @@
 
 .formButton {
   margin: 20px auto 0 auto;
+}
+
+.postContainer {
+  margin-bottom: 20px;
 }
