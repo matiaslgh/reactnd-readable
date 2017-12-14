@@ -81,3 +81,7 @@ li {
 .postContainer {
   margin-bottom: 20px;
 }
+
+.categoryChip {
+  margin: 0 20px;
+}

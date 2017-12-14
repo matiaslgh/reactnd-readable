@@ -1,8 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import prettyDate from 'pretty-date'
+import capitalize from 'lodash.capitalize'
 import Card, { CardHeader, CardContent, CardActions } from 'material-ui/Card'
-import { IconButton, Typography } from 'material-ui'
+import { IconButton, Typography, Chip } from 'material-ui'
 import { ArrowDropUp, ArrowDropDown } from 'material-ui-icons'
 
 const Post = props => {
@@ -32,6 +33,7 @@ const Post = props => {
             <IconButton aria-label="Vote negative">
               <ArrowDropDown />
             </IconButton>
+            <Chip label={capitalize(post.category)} className="categoryChip" />
           </CardActions>
         </Card>
   )
