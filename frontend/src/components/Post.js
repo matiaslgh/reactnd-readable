@@ -7,6 +7,7 @@ import { ArrowDropUp, ArrowDropDown } from 'material-ui-icons'
 
 const Post = props => {
   const { post } = props
+  const date = prettyDate.format(new Date(post.timestamp))
   return (
     <Card className="postContainer" >
           <CardHeader
@@ -16,7 +17,7 @@ const Post = props => {
             //   </IconButton>
             // }
             title={post.title}
-            subheader={prettyDate.format(new Date(post.timestamp))}
+            subheader={`Created by ${post.author} - ${date}`}
           />
           <CardContent>
             <Typography component="p">
