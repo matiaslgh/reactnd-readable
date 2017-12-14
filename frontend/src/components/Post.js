@@ -34,6 +34,7 @@ const Post = props => {
               <ArrowDropDown />
             </IconButton>
             <Chip label={capitalize(post.category)} className="categoryChip" />
+            Comments: {post.commentCount}
           </CardActions>
         </Card>
   )
