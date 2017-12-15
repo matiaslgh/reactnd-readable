@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import prettyDate from 'pretty-date'
 import capitalize from 'lodash.capitalize'
 import Vote from './Vote'
+import { Link } from 'react-router-dom'
 import Card, { CardHeader, CardContent, CardActions } from 'material-ui/Card'
 import { Typography, Chip } from 'material-ui'
 
@@ -17,7 +18,10 @@ const Post = props => {
         //     <MoreVertIcon />
         //   </IconButton>
         // }
-        title={post.title}
+        title={(
+          <Link to={`/${post.category}/${post.id}`} className='postTitleLink'>
+            {post.title}
+          </Link>)}
         subheader={`Created by ${post.author} - ${date}`}
       />
       <CardContent>

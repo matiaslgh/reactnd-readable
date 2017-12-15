@@ -94,6 +94,11 @@ li {
   margin-top: 80px;
 }
 
+.postTitleLink {
+  color: black;
+  text-decoration: none;
+}
+
 .postDetail, .comment {
   width: calc(100% - 40px);
   position: relative;
