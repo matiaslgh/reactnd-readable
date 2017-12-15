@@ -11,32 +11,32 @@ const Post = props => {
   const date = prettyDate.format(new Date(post.timestamp))
   return (
     <Card className={className} >
-          <CardHeader
-            // action={
-            //   <IconButton>
-            //     <MoreVertIcon />
-            //   </IconButton>
-            // }
-            title={post.title}
-            subheader={`Created by ${post.author} - ${date}`}
-          />
-          <CardContent>
-            <Typography component="p">
-              {post.body}
-            </Typography>
-          </CardContent>
-          <CardActions disableActionSpacing>
-            <IconButton aria-label="Vote positive">
-              <ArrowDropUp />
-            </IconButton>
-            {post.voteScore}
-            <IconButton aria-label="Vote negative">
-              <ArrowDropDown />
-            </IconButton>
-            <Chip label={capitalize(post.category)} className="categoryChip" />
-            Comments: {post.commentCount}
-          </CardActions>
-        </Card>
+      <CardHeader
+        // action={
+        //   <IconButton>
+        //     <MoreVertIcon />
+        //   </IconButton>
+        // }
+        title={post.title}
+        subheader={`Created by ${post.author} - ${date}`}
+      />
+      <CardContent>
+        <Typography component="p">
+          {post.body}
+        </Typography>
+      </CardContent>
+      <CardActions disableActionSpacing>
+        <IconButton aria-label="Vote positive">
+          <ArrowDropUp />
+        </IconButton>
+        {post.voteScore}
+        <IconButton aria-label="Vote negative">
+          <ArrowDropDown />
+        </IconButton>
+        <Chip label={capitalize(post.category)} className="categoryChip" />
+        Comments: {post.commentCount}
+      </CardActions>
+    </Card>
   )
 }
 
