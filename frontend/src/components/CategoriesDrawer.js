@@ -20,7 +20,7 @@ class CategoriesDrawer extends Component {
   state = {
     categories: [{
       name: 'All',
-      path: '/'
+      path: ''
     }]
   }
 
@@ -55,7 +55,7 @@ class CategoriesDrawer extends Component {
           </div>
           <List className={classes.list}>
             {categories.map(cat => (
-              <Link key={cat.path} to={cat.path} style={{ textDecoration: 'none' }}>
+              <Link key={cat.path} to={`/${cat.path}`} style={{ textDecoration: 'none' }}>
                 <ListItem button>
                   <ListItemText primary={cat.name} />
                 </ListItem>
