@@ -7,10 +7,10 @@ import { IconButton, Typography, Chip } from 'material-ui'
 import { ArrowDropUp, ArrowDropDown } from 'material-ui-icons'
 
 const Post = props => {
-  const { post } = props
+  const { post, className } = props
   const date = prettyDate.format(new Date(post.timestamp))
   return (
-    <Card className="postContainer" >
+    <Card className={className} >
           <CardHeader
             // action={
             //   <IconButton>

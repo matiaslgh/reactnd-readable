@@ -27,7 +27,7 @@ class Posts extends Component {
       <main className={classes} >
         <ul>
           {posts.map(post => (
-            <li key={post.id}><Post post={post}/></li>
+            <li key={post.id}><Post post={post} className="postContainer"/></li>
           ))}
         </ul>
         <Button fab color="primary" aria-label="add" className="buttonPosition"

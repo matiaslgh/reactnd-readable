@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { changeCategory } from '../actions/categoriesAction'
 import Header from './Header'
 import CategoriesDrawer from './CategoriesDrawer'
+import PostDetail from './PostDetail'
 import Posts from './Posts'
 import '../styles/App.css'
 
@@ -23,6 +24,7 @@ class App extends Component {
             changeCategory(match.params.category)
             return (<Posts />)
           }} />
+          <Route exact path="/:category/:post_id" component={PostDetail} />
         </div>
       </div>
     )

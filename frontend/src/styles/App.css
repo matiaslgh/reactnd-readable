@@ -85,3 +85,9 @@ li {
 .categoryChip {
   margin: 0 20px;
 }
+
+.postDetail {
+  width: calc(100% - 40px);
+  margin: 80px 20px 20px 20px;
+  position: absolute;
+}
