@@ -1,13 +1,12 @@
 import React from 'react'
 import { Component } from 'react'
 import Post from './Post'
+import Comments from './Comments'
 import { getPost } from '../utils/api'
 
 class PostDetail extends Component {
 
-  state = {
-    post: false
-  }
+  state = { }
 
   componentDidMount() {
     getPost(this.props.match.params.post_id)
@@ -18,7 +17,10 @@ class PostDetail extends Component {
     const { post } = this.state
     if (post) {
       return (
-        <Post post={post} className="postDetail"/>
+        <div className="postDetailContainer">
+          <Post post={post} className="postDetail"/>
+          <Comments postId={post.id} />
+        </div>
       )
     } else {
       return (<h1>Loading... </h1>)

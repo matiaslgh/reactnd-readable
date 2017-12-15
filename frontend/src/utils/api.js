@@ -36,3 +36,7 @@ export const getPost = id =>
     .then(data => data.json())
 
 export const apiPosts = { getPosts, createPost }
+
+export const getComments = postId =>
+  fetch(`${api}/posts/${postId}/comments`, { headers })
+  .then(data => data.json())

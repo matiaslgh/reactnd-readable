@@ -86,8 +86,24 @@ li {
   margin: 0 20px;
 }
 
-.postDetail {
-  width: calc(100% - 40px);
-  margin: 80px 20px 20px 20px;
+.postDetailContainer {
   position: absolute;
+  width: 100%;
+  height: 100vh;
+  padding: 20px;
+  margin-top: 80px;
+}
+
+.postDetail, .comment {
+  width: calc(100% - 40px);
+  position: relative;
+}
+
+.comments {
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.comment {
+  margin-top: 20px;
 }
