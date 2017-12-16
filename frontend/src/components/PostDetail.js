@@ -24,7 +24,7 @@ class PostDetail extends Component {
     if (post) {
       return (
         <div className={className}>
-          <Post post={post} className="postDetail"/>
+          <Post post={post} className="postDetail" redirectOnDelete={true}/>
           <div className="createCommentButtonContainer">
             <Button raised color="primary" onClick={openModal}>
               Add a comment

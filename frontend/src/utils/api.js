@@ -10,6 +10,9 @@ const headers = {
   'Content-Type': 'application/json'
 }
 
+const deleteElement = (type, id) =>
+  fetch(`${api}/${type}/${id}`, { headers, method: 'DELETE' })
+
 export const fetchCategories = () =>
   fetch(`${api}/categories`, { headers })
     .then(res => res.json())
@@ -31,11 +34,13 @@ export const createPost = post =>
   })
   .then(data => data.json())
 
+export const deletePost = id => deleteElement('posts', id)
+
 export const getPost = id =>
   fetch(`${api}/posts/${id}`, { headers })
     .then(data => data.json())
 
-export const apiPosts = { getPosts, createPost }
+export const apiPosts = { getPosts, createPost, deletePost }
 
 export const getComments = postId =>
   fetch(`${api}/posts/${postId}/comments`, { headers })
@@ -49,4 +54,6 @@ export const addComment = comment =>
   })
   .then(data => data.json())
 
-export const apiComments = { getComments, addComment }
+export const deleteComment = id => deleteElement('comments', id)
+
+export const apiComments = { getComments, addComment, deleteComment }

@@ -1,23 +1,32 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { deletePost } from '../actions/postsAction'
 import PropTypes from 'prop-types'
 import prettyDate from 'pretty-date'
 import capitalize from 'lodash.capitalize'
 import Vote from './Vote'
+import CardsMenu from './CardsMenu'
 import { Link } from 'react-router-dom'
 import Card, { CardHeader, CardContent, CardActions } from 'material-ui/Card'
 import { Typography, Chip } from 'material-ui'
 
+
 const Post = props => {
-  const { post, className } = props
+  const { post, className, deletePost, redirectOnDelete } = props
   const date = prettyDate.format(new Date(post.timestamp))
   return (
     <Card className={className} >
       <CardHeader
-        // action={
-        //   <IconButton>
-        //     <MoreVertIcon />
-        //   </IconButton>
-        // }
+        action={
+          <CardsMenu
+            onRequestDelete={()=>{
+              deletePost(post.id)
+              if (redirectOnDelete) {
+                window.location.href = '/'
+              }
+            }}
+          />
+        }
         title={(
           <Link to={`/${post.category}/${post.id}`} className='postTitleLink'>
             {post.title}
@@ -42,4 +51,8 @@ Post.propTypes = {
   post: PropTypes.object.isRequired
 }
 
-export default Post
+const mapDispatchToProps = dispatch => ({
+  deletePost: id => dispatch(deletePost(id))
+})
+
+export default connect(()=>({}), mapDispatchToProps)(Post)
