@@ -5,6 +5,7 @@ import { openAddCommentModal } from '../actions/uiAction'
 import Post from './Post'
 import Comments from './Comments'
 import AddComment from './AddComment'
+import NotFound from './NotFound'
 import { getPost } from '../utils/api'
 import { Button } from 'material-ui'
 
@@ -22,6 +23,7 @@ class PostDetail extends Component {
     const { post } = this.state
     const className = `postDetailContainer ${isDrawerOpen ? 'contentShift-left' : ''}`
     if (post) {
+      if (post.error || !Object.keys(post).length) return (<NotFound />)
       return (
         <div className={className}>
           <Post post={post} className="postDetail" redirectOnDelete={true}/>

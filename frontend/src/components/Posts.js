@@ -3,7 +3,9 @@ import { Component } from 'react'
 import { connect } from 'react-redux'
 import { getPosts } from '../actions/postsAction'
 import { openCreatePostModal } from '../actions/uiAction'
+import capitalize from 'lodash.capitalize'
 import Post from './Post'
+import NotFound from './NotFound'
 import CreatePost from './CreatePost'
 import { Button } from 'material-ui'
 import { Add as AddIcon } from 'material-ui-icons'
@@ -21,7 +23,12 @@ class Posts extends Component {
   }
 
   render() {
-    const { posts, isDrawerOpen, openModal } = this.props
+    const { posts, isDrawerOpen, openModal, categories, category } = this.props
+
+    if ( (categories.length - 1) && !categories.includes(category)) {
+      return (<NotFound />)
+    }
+
     const classes = "content content-left " + (isDrawerOpen ? "contentShift-left" : "")
     return (
       <main className={classes} >
@@ -49,6 +56,7 @@ const mapDispatchToProps = dispatch => ({
 const mapStateToProps = ({ posts, ui, categories }, props) => ({
   isDrawerOpen: ui.isDrawerOpen,
   category: categories.currentCategory,
+  categories: ['All', ...categories.allCategories.map(c => capitalize(c.name))],
   posts
 })
 

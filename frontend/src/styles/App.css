@@ -115,3 +115,9 @@ li {
 .comment {
   margin-top: 20px;
 }
+
+.notFound {
+  text-align: center;
+  width: 100%;
+  margin-top: 100px;
+}
