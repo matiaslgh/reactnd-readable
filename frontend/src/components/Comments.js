@@ -1,27 +1,23 @@
 import React from 'react'
 import { Component } from 'react'
+import { connect } from 'react-redux'
+import { getComments } from '../actions/commentsAction'
 import Comment from './Comment'
-import { getComments } from '../utils/api'
 import { Divider } from 'material-ui'
-
 
 class Comments extends Component {
 
-  state = {
-    comments: []
-  }
-
   componentDidMount() {
-    getComments(this.props.postId)
-    .then(comments => this.setState({comments}))
+    this.props.getComments(this.props.postId)
   }
 
   render() {
+    const { comments } = this.props
     return (
       <div className="comments">
         Comments
         <Divider light />
-        {this.state.comments.map(comment => (
+        {comments.map(comment => (
           <Comment key={comment.id} comment={comment} />
         ))}
       </div>
@@ -29,4 +25,12 @@ class Comments extends Component {
   }
 }
 
-export default Comments
+const mapStateToProps = ({ comments }) => ({
+  comments
+})
+
+const mapDispatchToProps = dispatch => ({
+  getComments: postId => dispatch(getComments(postId))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Comments)

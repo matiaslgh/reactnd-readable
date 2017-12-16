@@ -1,8 +1,12 @@
 import React from 'react'
 import { Component } from 'react'
+import { connect } from 'react-redux'
+import { openAddCommentModal } from '../actions/uiAction'
 import Post from './Post'
 import Comments from './Comments'
+import AddComment from './AddComment'
 import { getPost } from '../utils/api'
+import { Button } from 'material-ui'
 
 class PostDetail extends Component {
 
@@ -14,11 +18,18 @@ class PostDetail extends Component {
   }
 
   render() {
+    const { openModal } = this.props
     const { post } = this.state
     if (post) {
       return (
         <div className="postDetailContainer">
           <Post post={post} className="postDetail"/>
+          <div className="createCommentButtonContainer">
+            <Button raised color="primary" onClick={openModal}>
+              Add a comment
+            </Button>
+          </div>
+          <AddComment parentId={post.id} />
           <Comments postId={post.id} />
         </div>
       )
@@ -28,4 +39,8 @@ class PostDetail extends Component {
   }
 }
 
-export default PostDetail
+const mapDispatchtoProps = dispatch => ({
+  openModal: () => dispatch(openAddCommentModal())
+})
+
+export default connect(()=>({}), mapDispatchtoProps)(PostDetail)

@@ -1,42 +1,36 @@
-const CLOSE_DRAWER = 'CLOSE_DRAWER'
-const OPEN_DRAWER = 'OPEN_DRAWER'
-const CLOSE_CREATE_POST_MODAL= 'CLOSE_CREATE_POST_MODAL'
-const OPEN_CREATE_POST_MODAL= 'OPEN_CREATE_POST_MODAL'
+const SET_DRAWER = 'SET_DRAWER'
+const SET_CREATE_POST_MODAL= 'SET_CREATE_POST_MODAL'
+const SET_ADD_COMMENT_MODAL= 'SET_ADD_COMMENT_MODAL'
 
 export const constants = {
-  CLOSE_DRAWER,
-  OPEN_DRAWER,
-  CLOSE_CREATE_POST_MODAL,
-  OPEN_CREATE_POST_MODAL
+  SET_DRAWER,
+  SET_CREATE_POST_MODAL,
+  SET_ADD_COMMENT_MODAL,
 }
 
 const defaultState = {
   isDrawerOpen: false,
-  isCreatePostModalOpen: false
+  isCreatePostModalOpen: false,
+  isAddCommentModalOpen: false
 }
 
 export const ui = (state=defaultState, action) => {
   switch (action.type) {
-    case CLOSE_DRAWER:
+    case SET_DRAWER:
       return {
         ...state,
-        isDrawerOpen: false
+        isDrawerOpen: action.isDrawerOpen
       }
-    case OPEN_DRAWER:
+    case SET_CREATE_POST_MODAL:
       return {
         ...state,
-        isDrawerOpen: true
+        isCreatePostModalOpen: action.isCreatePostModalOpen
       }
-    case CLOSE_CREATE_POST_MODAL:
+    case SET_ADD_COMMENT_MODAL:
       return {
         ...state,
-        isCreatePostModalOpen: false
+        isAddCommentModalOpen: action.isAddCommentModalOpen
       }
-      case OPEN_CREATE_POST_MODAL:
-        return {
-          ...state,
-          isCreatePostModalOpen: true
-        }
     default:
       return state
   }

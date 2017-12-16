@@ -1,28 +1,37 @@
 import { constants } from '../reducers/uiReducer'
 
 const {
-  OPEN_DRAWER,
-  CLOSE_DRAWER,
-  OPEN_CREATE_POST_MODAL,
-  CLOSE_CREATE_POST_MODAL
+  SET_DRAWER,
+  SET_CREATE_POST_MODAL,
+  SET_ADD_COMMENT_MODAL,
 } = constants
 
 export const openDrawer = () => ({
-  type: OPEN_DRAWER,
+  type: SET_DRAWER,
   isDrawerOpen: true
 })
 
 export const closeDrawer = () => ({
-  type: CLOSE_DRAWER,
+  type: SET_DRAWER,
   isDrawerOpen: false
 })
 
 export const openCreatePostModal = () => ({
-  type: OPEN_CREATE_POST_MODAL,
+  type: SET_CREATE_POST_MODAL,
   isCreatePostModalOpen: true
 })
 
 export const closeCreatePostModal = () => ({
-  type: CLOSE_CREATE_POST_MODAL,
+  type: SET_CREATE_POST_MODAL,
   isCreatePostModalOpen: false
+})
+
+export const openAddCommentModal = () => ({
+  type: SET_ADD_COMMENT_MODAL,
+  isAddCommentModalOpen: true
+})
+
+export const closeAddCommentModal = () => ({
+  type: SET_ADD_COMMENT_MODAL,
+  isAddCommentModalOpen: false
 })
