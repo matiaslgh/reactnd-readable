@@ -18,11 +18,12 @@ class PostDetail extends Component {
   }
 
   render() {
-    const { openModal } = this.props
+    const { openModal, isDrawerOpen } = this.props
     const { post } = this.state
+    const className = `postDetailContainer ${isDrawerOpen ? 'contentShift-left' : ''}`
     if (post) {
       return (
-        <div className="postDetailContainer">
+        <div className={className}>
           <Post post={post} className="postDetail"/>
           <div className="createCommentButtonContainer">
             <Button raised color="primary" onClick={openModal}>
@@ -39,8 +40,12 @@ class PostDetail extends Component {
   }
 }
 
+const mapStateToProps = ({ ui }) => ({
+  isDrawerOpen: ui.isDrawerOpen
+})
+
 const mapDispatchtoProps = dispatch => ({
   openModal: () => dispatch(openAddCommentModal())
 })
 
-export default connect(()=>({}), mapDispatchtoProps)(PostDetail)
+export default connect(mapStateToProps, mapDispatchtoProps)(PostDetail)

@@ -70,9 +70,9 @@ class CategoriesDrawer extends Component {
 
 const styles = theme => ({
   drawerPaper: {
-    position: 'relative',
+    position: 'fixed',
     height: '100%',
-    width: 240
+    width: 140
 }})
 
 const mapStateToProps = ({ ui, categories }) => ({
