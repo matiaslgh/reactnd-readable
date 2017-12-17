@@ -9,6 +9,11 @@ export const getComments = postId => dispatch =>
     comments
   }))
 
+export const cleanComments = () => ({
+  type: GET_COMMENTS,
+  comments: []
+})
+
 export const addComment = comment => dispatch =>
   api.addComment(comment).then(comment => dispatch({
     type: ADD_COMMENT,

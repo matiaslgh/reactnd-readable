@@ -2,25 +2,25 @@ import React from 'react'
 import { Component } from 'react'
 import { connect } from 'react-redux'
 import { openAddCommentModal } from '../actions/uiAction'
+import { changePostToSee, cleanPostToSee } from '../actions/postsAction'
 import Post from './Post'
 import Comments from './Comments'
 import AddComment from './AddComment'
 import NotFound from './NotFound'
-import { getPost } from '../utils/api'
 import { Button } from 'material-ui'
 
 class PostDetail extends Component {
 
-  state = { }
-
   componentDidMount() {
-    getPost(this.props.match.params.post_id)
-      .then(post => this.setState({ post }))
+    this.props.changePostToSee(this.props.match.params.post_id)
+  }
+
+  componentWillUnmount() {
+    this.props.cleanPostToSee()
   }
 
   render() {
-    const { openModal, isDrawerOpen } = this.props
-    const { post } = this.state
+    const { openModal, isDrawerOpen, post } = this.props
     const className = `postDetailContainer ${isDrawerOpen ? 'contentShift-left' : ''}`
     if (post) {
       if (post.error || !Object.keys(post).length) return (<NotFound />)
@@ -42,12 +42,15 @@ class PostDetail extends Component {
   }
 }
 
-const mapStateToProps = ({ ui }) => ({
-  isDrawerOpen: ui.isDrawerOpen
+const mapStateToProps = ({ ui, posts }) => ({
+  isDrawerOpen: ui.isDrawerOpen,
+  post: posts.postToSee
 })
 
 const mapDispatchtoProps = dispatch => ({
-  openModal: () => dispatch(openAddCommentModal())
+  openModal: () => dispatch(openAddCommentModal()),
+  changePostToSee: id => dispatch(changePostToSee(id)),
+  cleanPostToSee: () => dispatch(cleanPostToSee())
 })
 
 export default connect(mapStateToProps, mapDispatchtoProps)(PostDetail)

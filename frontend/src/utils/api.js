@@ -47,7 +47,7 @@ fetch(`${api}/posts/${id}`, {
   body: JSON.stringify(post)
 })
 
-export const apiPosts = { getPosts, createPost, deletePost, updatePost }
+export const apiPosts = { getPost, getPosts, createPost, deletePost, updatePost }
 
 export const getComments = postId =>
   fetch(`${api}/posts/${postId}/comments`, { headers })
