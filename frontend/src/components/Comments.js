@@ -3,6 +3,7 @@ import { Component } from 'react'
 import { connect } from 'react-redux'
 import { getComments, cleanComments } from '../actions/commentsAction'
 import Comment from './Comment'
+import EditComment from './EditComment'
 import { Divider } from 'material-ui'
 
 class Comments extends Component {
@@ -24,13 +25,14 @@ class Comments extends Component {
         {comments.map(comment => (
           <Comment key={comment.id} comment={comment} />
         ))}
+        <EditComment />
       </div>
     )
   }
 }
 
 const mapStateToProps = ({ comments }) => ({
-  comments
+  comments: comments.all
 })
 
 const mapDispatchToProps = dispatch => ({

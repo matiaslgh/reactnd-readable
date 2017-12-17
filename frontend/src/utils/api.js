@@ -63,4 +63,11 @@ export const addComment = comment =>
 
 export const deleteComment = id => deleteElement('comments', id)
 
-export const apiComments = { getComments, addComment, deleteComment }
+export const updateComment = (id, body) =>
+fetch(`${api}/comments/${id}`, {
+  headers,
+  method: 'PUT' ,
+  body: JSON.stringify({body})
+})
+
+export const apiComments = { getComments, addComment, deleteComment, updateComment }
