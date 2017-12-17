@@ -57,3 +57,21 @@ export const cleanPostToSee = () => ({
   type: CHANGE_POST_TO_SEE,
   post: null
 })
+
+export const postUpVote = (id, currentScore) => {
+  api.postUpVote(id)
+  return {
+    type: UPDATE_POST,
+    post: { voteScore: currentScore + 1},
+    id
+  }
+}
+
+export const postDownVote = (id, currentScore) => {
+  api.postDownVote(id)
+  return {
+    type: UPDATE_POST,
+    post: { voteScore: currentScore - 1},
+    id
+  }
+}

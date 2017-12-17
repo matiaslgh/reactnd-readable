@@ -32,14 +32,32 @@ export const deleteComment = id => dispatch =>
     id
   }))
 
-export const updateComment = (id, body) => dispatch =>
-  api.updateComment(id, body).then(() => dispatch({
+export const updateComment = (id, comment) => dispatch =>
+  api.updateComment(id, comment.body).then(() => dispatch({
     type: UPDATE_COMMENT,
     id,
-    body
+    comment
   }))
 
 export const changeCommentToUpdate = (id, body) => ({
   type: CHANGE_COMMENT_TO_UPDATE,
   commentToUpdate: { id, body }
 })
+
+export const commentUpVote = (id, currentScore) => {
+  api.commentUpVote(id)
+  return {
+    type: UPDATE_COMMENT,
+    comment: { voteScore: currentScore + 1},
+    id
+  }
+}
+
+export const commentDownVote = (id, currentScore) => {
+  api.commentDownVote(id)
+  return {
+    type: UPDATE_COMMENT,
+    comment: { voteScore: currentScore - 1},
+    id
+  }
+}

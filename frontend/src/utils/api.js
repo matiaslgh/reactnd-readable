@@ -13,6 +13,13 @@ const headers = {
 const deleteElement = (type, id) =>
   fetch(`${api}/${type}/${id}`, { headers, method: 'DELETE' })
 
+const changeVote = (type, option, id) =>
+  fetch(`${api}/${type}/${id}`, {
+    headers,
+    method: 'POST' ,
+    body: JSON.stringify({ option })
+  })
+
 export const fetchCategories = () =>
   fetch(`${api}/categories`, { headers })
     .then(res => res.json())
@@ -47,7 +54,19 @@ fetch(`${api}/posts/${id}`, {
   body: JSON.stringify(post)
 })
 
-export const apiPosts = { getPost, getPosts, createPost, deletePost, updatePost }
+export const postUpVote = id => changeVote('posts', 'upVote', id)
+
+export const postDownVote = id => changeVote('posts', 'downVote', id)
+
+export const apiPosts = {
+  getPost,
+  getPosts,
+  createPost,
+  deletePost,
+  updatePost,
+  postUpVote,
+  postDownVote
+}
 
 export const getComments = postId =>
   fetch(`${api}/posts/${postId}/comments`, { headers })
@@ -70,4 +89,15 @@ fetch(`${api}/comments/${id}`, {
   body: JSON.stringify({body})
 })
 
-export const apiComments = { getComments, addComment, deleteComment, updateComment }
+export const commentUpVote = id => changeVote('comments', 'upVote', id)
+
+export const commentDownVote = id => changeVote('comments', 'downVote', id)
+
+export const apiComments = {
+  getComments,
+  addComment,
+  deleteComment,
+  updateComment,
+  commentUpVote,
+  commentDownVote
+}

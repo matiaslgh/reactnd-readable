@@ -53,7 +53,7 @@ class EditComment extends Component {
     }
     this.props.updateComment(
       this.props.comment.id,
-      this.state.body
+      {body : this.state.body }
     )
     this.onRequestClose()
   }

@@ -1,6 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { deletePost, changePostToUpdate } from '../actions/postsAction'
+import {
+  deletePost,
+  changePostToUpdate,
+  postUpVote,
+  postDownVote
+} from '../actions/postsAction'
 import { openUpdatePostModal } from '../actions/uiAction'
 import PropTypes from 'prop-types'
 import prettyDate from 'pretty-date'
@@ -13,7 +18,8 @@ import { Typography, Chip } from 'material-ui'
 
 
 const Post = props => {
-  const { post, className, deletePost, redirectOnDelete, openUpdatePostModal } = props
+  const { post, className, deletePost, redirectOnDelete, openUpdatePostModal,
+    postUpVote, postDownVote } = props
   const date = prettyDate.format(new Date(post.timestamp))
   return (
     <Card className={className} >
@@ -41,7 +47,11 @@ const Post = props => {
         </Typography>
       </CardContent>
       <CardActions disableActionSpacing>
-        <Vote element={post}/>
+        <Vote
+          element={post}
+          onRequestUpVote={() => postUpVote(post.id, post.voteScore)}
+          onRequestDownVote={() => postDownVote(post.id, post.voteScore)}
+        />
         <Chip label={capitalize(post.category)} className="categoryChip" />
         Comments: {post.commentCount}
       </CardActions>
@@ -55,6 +65,8 @@ Post.propTypes = {
 
 const mapDispatchToProps = dispatch => ({
   deletePost: id => dispatch(deletePost(id)),
+  postUpVote: (id, score) => dispatch(postUpVote(id, score)),
+  postDownVote: (id, score) => dispatch(postDownVote(id, score)),
   openUpdatePostModal: (post) => {
     dispatch(changePostToUpdate({
       id: post.id,

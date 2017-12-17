@@ -42,7 +42,7 @@ export const comments = (state = initial, action) => {
       return {
         ...state,
         all: state.all.map(c =>
-          c.id !== action.id ? c : Object.assign({}, c, {body: action.body})
+          c.id !== action.id ? c : Object.assign({}, c, action.comment)
         )
       }
     default:
