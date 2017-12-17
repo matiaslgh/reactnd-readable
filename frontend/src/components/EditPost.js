@@ -16,9 +16,16 @@ class EditPost extends Component {
     this.state = this.cleanState()
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      title: nextProps.post.title,
+      body: nextProps.post.body
+    })
+  }
+
   cleanState = () => ({
-    title: this.props.title,
-    body: this.props.body,
+    title: '',
+    body: '',
     titleError: false,
     bodyError: false,
   })
@@ -48,7 +55,7 @@ class EditPost extends Component {
     if (!this.isValid()) {
       return false
     }
-    this.props.updatePost(this.props.id, {
+    this.props.updatePost(this.props.post.id, {
       title: this.state.title,
       body: this.state.body
     })
@@ -99,8 +106,9 @@ class EditPost extends Component {
   }
 }
 
-const mapStateToProps = ({ ui }) => ({
-  isModalOpen: ui.isUpdatePostModalOpen
+const mapStateToProps = ({ ui, posts }) => ({
+  isModalOpen: ui.isUpdatePostModalOpen,
+  post: posts.postToUpdate
 })
 
 const mapDispatchToProps = dispatch => ({

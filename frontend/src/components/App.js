@@ -6,6 +6,7 @@ import Header from './Header'
 import CategoriesDrawer from './CategoriesDrawer'
 import PostDetail from './PostDetail'
 import Posts from './Posts'
+import EditPost from './EditPost'
 import '../styles/App.css'
 
 class App extends Component {
@@ -25,6 +26,7 @@ class App extends Component {
             return (<Posts />)
           }} />
           <Route exact path="/:category/:post_id" component={PostDetail} />
+          <EditPost />
         </div>
       </div>
     )

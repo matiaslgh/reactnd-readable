@@ -57,7 +57,7 @@ const mapStateToProps = ({ posts, ui, categories }, props) => ({
   isDrawerOpen: ui.isDrawerOpen,
   category: categories.currentCategory,
   categories: ['All', ...categories.allCategories.map(c => capitalize(c.name))],
-  posts
+  posts: posts.all
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Posts)
