@@ -17,6 +17,11 @@ class CardsMenu extends Component {
     open: true, anchorEl: event.currentTarget
   })
 
+  edit = () => {
+    this.props.onRequestEdit()
+    this.handleRequestClose()
+  }
+
   delete = () => {
     this.props.onRequestDelete()
     this.handleRequestClose()
@@ -38,6 +43,7 @@ class CardsMenu extends Component {
           open={open}
           onRequestClose={this.handleRequestClose}
         >
+          <MenuItem onClick={this.edit}>Edit</MenuItem>
           <MenuItem onClick={this.delete}>Delete</MenuItem>
         </Menu>
       </div>

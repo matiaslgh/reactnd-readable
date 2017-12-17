@@ -1,11 +1,13 @@
 const SET_DRAWER = 'SET_DRAWER'
 const SET_CREATE_POST_MODAL= 'SET_CREATE_POST_MODAL'
 const SET_ADD_COMMENT_MODAL= 'SET_ADD_COMMENT_MODAL'
+const SET_UPDATE_POST_MODAL= 'SET_UPDATE_POST_MODAL'
 
 export const constants = {
   SET_DRAWER,
   SET_CREATE_POST_MODAL,
   SET_ADD_COMMENT_MODAL,
+  SET_UPDATE_POST_MODAL
 }
 
 const defaultState = {
@@ -30,6 +32,11 @@ export const ui = (state=defaultState, action) => {
       return {
         ...state,
         isAddCommentModalOpen: action.isAddCommentModalOpen
+      }
+    case SET_UPDATE_POST_MODAL:
+      return {
+        ...state,
+        isUpdatePostModalOpen: action.isUpdatePostModalOpen
       }
     default:
       return state

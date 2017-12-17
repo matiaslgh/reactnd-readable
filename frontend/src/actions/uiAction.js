@@ -4,6 +4,7 @@ const {
   SET_DRAWER,
   SET_CREATE_POST_MODAL,
   SET_ADD_COMMENT_MODAL,
+  SET_UPDATE_POST_MODAL
 } = constants
 
 export const openDrawer = () => ({
@@ -34,4 +35,14 @@ export const openAddCommentModal = () => ({
 export const closeAddCommentModal = () => ({
   type: SET_ADD_COMMENT_MODAL,
   isAddCommentModalOpen: false
+})
+
+export const openUpdatePostModal = () => ({
+  type: SET_UPDATE_POST_MODAL,
+  isUpdatePostModalOpen: true
+})
+
+export const closeUpdatePostModal = () => ({
+  type: SET_UPDATE_POST_MODAL,
+  isUpdatePostModalOpen: false
 })

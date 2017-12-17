@@ -40,7 +40,14 @@ export const getPost = id =>
   fetch(`${api}/posts/${id}`, { headers })
     .then(data => data.json())
 
-export const apiPosts = { getPosts, createPost, deletePost }
+export const updatePost = (id, post) =>
+fetch(`${api}/posts/${id}`, {
+  headers,
+  method: 'PUT' ,
+  body: JSON.stringify(post)
+})
+
+export const apiPosts = { getPosts, createPost, deletePost, updatePost }
 
 export const getComments = postId =>
   fetch(`${api}/posts/${postId}/comments`, { headers })

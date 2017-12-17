@@ -1,7 +1,7 @@
 import { apiPosts as api } from '../utils/api'
 import { constants } from '../reducers/postsReducer'
 
-const { GET_POSTS, CREATE_POST, DELETE_POST } = constants
+const { GET_POSTS, CREATE_POST, DELETE_POST, UPDATE_POST } = constants
 
 export const getPosts = category => dispatch => {
   api.getPosts(category)
@@ -23,5 +23,13 @@ export const deletePost = id => dispatch => {
   api.deletePost(id).then(() => dispatch({
     type: DELETE_POST,
     id
+  }))
+}
+
+export const updatePost = (id, post) => dispatch => {
+  api.updatePost(id, post).then(() => dispatch({
+    type: UPDATE_POST,
+    id,
+    post
   }))
 }
