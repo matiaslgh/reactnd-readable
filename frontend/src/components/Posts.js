@@ -7,6 +7,7 @@ import capitalize from 'lodash.capitalize'
 import Post from './Post'
 import NotFound from './NotFound'
 import CreatePost from './CreatePost'
+import Sort from './Sort'
 import { Button } from 'material-ui'
 import { Add as AddIcon } from 'material-ui-icons'
 
@@ -43,6 +44,7 @@ class Posts extends Component {
           <AddIcon />
         </Button>
         <CreatePost />
+        <Sort />
       </main>
     )
   }

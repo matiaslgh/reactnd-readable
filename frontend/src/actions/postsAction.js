@@ -7,7 +7,8 @@ const {
   DELETE_POST,
   UPDATE_POST,
   CHANGE_POST_TO_UPDATE,
-  CHANGE_POST_TO_SEE
+  CHANGE_POST_TO_SEE,
+  SORT_POSTS
 } = constants
 
 export const getPosts = category => dispatch => {
@@ -75,3 +76,8 @@ export const postDownVote = (id, currentScore) => {
     id
   }
 }
+
+export const sortPosts = criteria => ({
+  type: SORT_POSTS,
+  criteria
+})

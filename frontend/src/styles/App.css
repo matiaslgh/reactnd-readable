@@ -121,3 +121,10 @@ li {
   width: 100%;
   margin-top: 100px;
 }
+
+.sortMenu {
+  position: fixed;
+  top: 15px;
+  right: 30px;
+  z-index: 1101;
+}
